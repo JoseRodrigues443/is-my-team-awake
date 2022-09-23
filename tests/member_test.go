@@ -18,6 +18,6 @@ func TestIsAwake(t *testing.T) {
 	}
 	result := teamMember.IsAwake(config)
 	if result {
-		t.Error("result should be 832040, got", result)
+		t.Error("result should be false, got", result)
 	}
 }

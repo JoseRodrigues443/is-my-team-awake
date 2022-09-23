@@ -1,6 +1,9 @@
 package lib
 
-import "time"
+import (
+	"log"
+	"time"
+)
 
 type TeamMember struct {
 	Name     string
@@ -12,6 +15,7 @@ func (t *TeamMember) IsAwake(c *Config) bool {
 
 	// set timezone,
 	now := time.Now().In(loc)
+	log.Print("This is our first log message in Go.")
 
 	start := time.Date(now.Year(), now.Month(), now.Day(), c.StartOfDay.UTC().Hour(), c.StartOfDay.UTC().Minute(), 0, 0, loc)
 
