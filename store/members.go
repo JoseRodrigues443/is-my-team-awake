@@ -1,10 +1,13 @@
 package store
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/JoseRodrigues443/is-my-team-awake/lib"
 )
+
+var ErrNotFound = errors.New("Member was not found")
 
 var members = []lib.TeamMember{
 	{
@@ -56,8 +59,13 @@ func (r *Repo) GetAll() []lib.TeamMember {
 	return v
 }
 
-func (r *Repo) GetMemberByName(name string) lib.TeamMember {
-	return r.membersById[name]
+func (r *Repo) GetMemberByName(name string) (*lib.TeamMember, error) {
+	key := generateKey(name)
+	member, ok := r.membersById[key]
+	if ok {
+		return &member, nil
+	}
+	return nil, ErrNotFound
 }
 
 func (r *Repo) AddMember(member lib.TeamMember) {
