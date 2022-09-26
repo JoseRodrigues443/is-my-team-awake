@@ -2,7 +2,6 @@ package tests
 
 import (
 	"testing"
-	"time"
 
 	"github.com/JoseRodrigues443/is-my-team-awake/lib"
 )
@@ -12,9 +11,11 @@ func TestIsAwake(t *testing.T) {
 		Name:     "Jonh Doe",
 		Location: "Asia/Shanghai",
 	}
+	startOfDay, _ := lib.NewHourOfDay(8, 0)
+	endOfDay, _ := lib.NewHourOfDay(18, 0)
 	config := &lib.Config{
-		StartOfDay: time.Now(),
-		EndOfDay:   time.Now().Add(time.Hour),
+		StartOfDay: startOfDay,
+		EndOfDay:   endOfDay,
 	}
 	result := teamMember.IsAwake(config)
 	if result {
