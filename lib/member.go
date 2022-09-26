@@ -12,11 +12,15 @@ type TeamMember struct {
 }
 
 func (t *TeamMember) IsAwake(c *Config) bool {
-	loc, _ := time.LoadLocation(t.Location)
+	loc, error := time.LoadLocation(t.Location)
+
+	if error != nil {
+		logger.Log.Printf("Not valid location: %s", t.Location)
+		return false
+	}
 
 	// set timezone,
 	now := time.Now().In(loc)
-	logger.Log.Printf("This is our first log message in Go.")
 
 	start := time.Date(now.Year(), now.Month(), now.Day(), c.StartOfDay.Hour, c.StartOfDay.Minute, 0, 0, loc)
 

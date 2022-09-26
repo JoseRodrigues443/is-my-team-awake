@@ -31,7 +31,7 @@ func NewRepo() *Repo {
 
 	membersById["janet_doe"] = lib.TeamMember{
 		Name:     "Janet Doe",
-		Location: "America/Metropolis",
+		Location: "Asia/Kolkata",
 	}
 
 	return &Repo{
@@ -44,7 +44,7 @@ func generateKey(name string) string {
 }
 
 func (r *Repo) GetAll() []lib.TeamMember {
-	v := make([]lib.TeamMember, len(r.membersById))
+	v := make([]lib.TeamMember, 0)
 	for _, tx := range r.membersById {
 		v = append(v, tx)
 	}
