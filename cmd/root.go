@@ -1,24 +1,25 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "is-my-team-awake",
 	Short: "Tools to check the timezones of a remote team",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	Long: `Tools to check the timezones of a remote team, for example:
+	
+		is-my-team-awake "Jonh Does"
+	`,
+	// Run: func(cmd *cobra.Command, args []string) {
+	// 	fmt.Println("Is my team awake cli -- HEAD")
+	// },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -35,7 +36,12 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.myapp.yaml)")
+	viper.SetConfigFile(".env")
+	viper.ReadInConfig()
+	viper.WatchConfig()
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Println("Config file changed:", e.Name)
+	})
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
