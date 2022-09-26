@@ -12,19 +12,23 @@ type TeamMember struct {
 }
 
 func (t *TeamMember) IsAwake(c *Config) bool {
+	theirTime := t.TheirTime(c)
+
+	return theirTime.Hour >= c.StartOfDay.Hour && theirTime.Hour <= c.EndOfDay.Hour
+}
+
+func (t *TeamMember) TheirTime(c *Config) *HourOfDay {
 	loc, error := time.LoadLocation(t.Location)
 
 	if error != nil {
 		logger.Log.Printf("Not valid location: %s", t.Location)
-		return false
 	}
 
 	// set timezone,
 	now := time.Now().In(loc)
 
-	start := time.Date(now.Year(), now.Month(), now.Day(), c.StartOfDay.Hour, c.StartOfDay.Minute, 0, 0, loc)
-
-	end := time.Date(now.Year(), now.Month(), now.Day(), c.EndOfDay.Hour, c.EndOfDay.Minute, 0, 0, loc)
-
-	return now.After(start) && now.Before(end)
+	return &HourOfDay{
+		Hour:   now.Hour(),
+		Minute: now.Minute(),
+	}
 }

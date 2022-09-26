@@ -34,6 +34,11 @@ func NewRepo() *Repo {
 		Location: "Asia/Kolkata",
 	}
 
+	membersById["李祖阳"] = lib.TeamMember{
+		Name:     "李祖阳",
+		Location: "Europe/London",
+	}
+
 	return &Repo{
 		membersById: membersById,
 	}

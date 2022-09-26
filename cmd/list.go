@@ -28,10 +28,7 @@ func cmdList(ccmd *cobra.Command, args []string) {
 		if v.IsAwake(config) {
 			isAwake = "Awake"
 		}
-		// fmt.Printf("%s - ", v.Name)
-		// fmt.Printf("%s - ", v.Location)
-		// fmt.Printf("%s - ", isAwake)
-		fmt.Printf("%s - %s - %s", v.Name, v.Location, isAwake)
-		fmt.Println("")
+		theirTime := v.TheirTime(config)
+		fmt.Printf("%s - %s - %s - %d:%d\n", v.Name, v.Location, isAwake, theirTime.Hour, theirTime.Minute)
 	}
 }

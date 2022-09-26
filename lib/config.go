@@ -7,7 +7,7 @@ type Config struct {
 
 func GetConfig() *Config {
 	startOfDay, _ := NewHourOfDay(9, 0)
-	endOfDay, _ := NewHourOfDay(9, 0)
+	endOfDay, _ := NewHourOfDay(18, 0)
 	return &Config{
 		StartOfDay: startOfDay,
 		EndOfDay:   endOfDay,
