@@ -19,3 +19,4 @@
 
 # Env
 .env
+config/default.yaml

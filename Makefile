@@ -5,7 +5,7 @@ test:
 	go test ./tests
 
 env:
-	[ -e ".env" ] && echo "Env Exists" || cp .env.example .env
+	[ -e "./config/default.yaml" ] && echo "Env Exists" || cp ./config/example.default.yaml ./config/default.yaml
 
 clean:
-	rm .env
+	rm ./config/default.yaml
