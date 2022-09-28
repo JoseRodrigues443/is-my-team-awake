@@ -1,0 +1,37 @@
+{
+  "name": "is-my-team-awake",
+  "version": "1.0.0",
+  "description": "Tools to check the timezones of a remote team",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "commit": "cz",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseRodrigues443/is-my-team-awake.git"
+  },
+  "author": {
+    "name": "Miguel Rodrigues",
+    "url": "https://joserodrigues443.github.io/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JoseRodrigues443/is-my-team-awake/issues"
+  },
+  "homepage": "https://github.com/JoseRodrigues443/is-my-team-awake#readme",
+  "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

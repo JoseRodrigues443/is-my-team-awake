@@ -45,7 +45,7 @@ func init() {
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $HOME/.ismyteamawake.yaml)")
-	viper.BindPFlag("config", rootCmd.PersistentFlags().Lookup("config"))
+	_ = viper.BindPFlag("config", rootCmd.PersistentFlags().Lookup("config"))
 
 	// commands
 	rootCmd.AddCommand(check)

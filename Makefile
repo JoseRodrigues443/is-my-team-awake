@@ -16,7 +16,7 @@ clean: ## remove files created during build pipeline
 	rm -f coverage.*
 
 .PHONY: install
-install: ## go install tools
+install: env ## go install tools
 	$(call print-target)
 	cd tools && go install $(shell cd tools && go list -f '{{ join .Imports " " }}' -tags=tools)
 
@@ -45,7 +45,7 @@ lint: ## golangci-lint
 .PHONY: test
 test: ## go test with race detector and code covarage
 	$(call print-target)
-	go test -race -covermode=atomic -coverprofile=coverage.out ./...
+	go test -race -covermode=atomic -coverprofile=coverage.out ./tests/
 	go tool cover -html=coverage.out -o coverage.html
 
 .PHONY: mod-tidy
@@ -74,7 +74,7 @@ release: install
 	goreleaser --rm-dist
 
 .PHONY: run
-run: env ## go run
+run: ## go run
 	@go run -race .
 
 .PHONY: go-clean
@@ -84,6 +84,7 @@ go-clean: ## go clean build, test and modules caches
 
 .PHONY: env
 env:
+	npm i
 	[ -e "./config/default.yaml" ] && echo "Env Exists" || cp ./config/example.default.yaml ./config/default.yaml
 
 
@@ -91,3 +92,7 @@ define print-target
     @printf "Executing target: \033[36m$@\033[0m\n"
 endef
 
+.PHONY: commit
+commit:
+	git add -A
+	npm run commit

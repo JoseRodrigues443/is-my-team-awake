@@ -9,17 +9,6 @@ import (
 
 var ErrNotFound = errors.New("Member was not found")
 
-var members = []lib.TeamMember{
-	{
-		Name:     "Jonh Doe",
-		Location: "Asia/Shanghai",
-	},
-	{
-		Name:     "Janet Doe",
-		Location: "America/Metropolis",
-	},
-}
-
 type Repo struct {
 	membersById map[string]lib.TeamMember
 }
