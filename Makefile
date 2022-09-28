@@ -11,7 +11,7 @@ ci: dev diff
 .PHONY: clean
 clean: ## remove files created during build pipeline
 	$(call print-target)
-	rm ./config/default.yaml
+	rm -f ./config/default.yaml
 	rm -rf dist
 	rm -f coverage.*
 
