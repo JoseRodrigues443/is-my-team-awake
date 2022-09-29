@@ -7,7 +7,7 @@ import (
 )
 
 func TestIsAwake(t *testing.T) {
-	teamMember := &lib.TeamMember{
+	teamMember := lib.TeamMember{
 		Name:     "Jonh Doe",
 		Location: "Asia/Shanghai",
 	}
@@ -19,6 +19,6 @@ func TestIsAwake(t *testing.T) {
 	}
 	result := teamMember.IsAwake(config)
 	if result {
-		t.Error("result should be false, got", result)
+		t.Errorf("result should be false, got %t", result)
 	}
 }
