@@ -3,7 +3,7 @@ module github.com/JoseRodrigues443/is-my-team-awake
 go 1.19
 
 require (
-	github.com/fsnotify/fsnotify v1.5.4
+	github.com/fsnotify/fsnotify v1.6.0
 	github.com/spf13/cobra v1.5.0
 )
 
