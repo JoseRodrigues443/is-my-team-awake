@@ -14,6 +14,7 @@ clean: ## remove files created during build pipeline
 	rm -f ./config/default.yaml
 	rm -rf dist
 	rm -f coverage.*
+	rm -f ./logs/*.log
 
 .PHONY: install
 install: env ## go install tools

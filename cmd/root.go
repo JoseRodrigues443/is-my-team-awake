@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 
+	"github.com/JoseRodrigues443/is-my-team-awake/logger"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -61,10 +61,12 @@ func initConfig() {
 
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		fmt.Println("Config file changed:", e.Name)
+		logger.Log.Println("Config file changed:", e.Name)
 	})
 
 	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Config file: ", viper.ConfigFileUsed())
+		logger.Log.Println("Config file: ", viper.ConfigFileUsed())
+	} else {
+		logger.Log.Fatalln("Could not read config file: ", viper.ConfigFileUsed())
 	}
 }

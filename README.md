@@ -2,7 +2,7 @@
 
 [![build](https://github.com/JoseRodrigues443/is-my-team-awake/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/JoseRodrigues443/is-my-team-awake/actions/workflows/build.yml)
 
-Cli tool to check if my team members are awake
+CLI tool to check if my team members are awake
 
 
 ## Special Thanks to
