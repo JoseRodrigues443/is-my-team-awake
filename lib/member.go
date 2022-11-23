@@ -13,8 +13,6 @@ type TeamMember struct {
 
 func (t *TeamMember) IsAwake(c *Config) bool {
 	theirTime := t.TheirTime(c)
-	logger.Log.Printf("TeamMember %+v has time: %+v", t, theirTime)
-
 	return theirTime.Hour >= c.StartOfDay.Hour && theirTime.Hour <= c.EndOfDay.Hour
 }
 
