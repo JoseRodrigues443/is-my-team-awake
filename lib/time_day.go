@@ -22,3 +22,7 @@ func NewHourOfDay(hour int, minute int) (*HourOfDay, error) {
 	}
 	return &HourOfDay{hour, minute}, nil
 }
+
+func (h *HourOfDay) IsEqualsTo(toCompare *HourOfDay) bool {
+	return h.Hour == toCompare.Hour && h.Minute == toCompare.Minute
+}

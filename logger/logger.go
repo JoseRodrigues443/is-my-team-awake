@@ -31,7 +31,6 @@ func init() {
 	// set location of log file
 	// @JoseRodrigues443 TODO add these dir to config file
 	var logPath = "./logs/info.log"
-	fmt.Println(getProjectRootPath(logPath))
 
 	var file, err = os.Create(getProjectRootPath(logPath))
 
