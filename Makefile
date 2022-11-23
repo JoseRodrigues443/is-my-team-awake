@@ -93,7 +93,19 @@ define print-target
     @printf "Executing target: \033[36m$@\033[0m\n"
 endef
 
+
 .PHONY: commit
 commit:
-	git add -A
 	npm run commit
+
+.PHONY: commit-all
+commit-all:
+	git add -A
+	make commit
+
+.PHONY: help
+help:
+	echo "Makefile command lists:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	echo "is-my-team-awake Help list:"
+	go run . --help
