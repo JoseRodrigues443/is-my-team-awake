@@ -1,12 +1,12 @@
 # Is my team awake
 
-[![Keep a Changelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog-%23E05735)](CHANGELOG.md)
-[![GitHub Release](https://img.shields.io/github/v/release/JoseRodrigues443/is-my-team-awake)](https://github.com/JoseRodrigues443/is-my-team-awake/releases)
+<!-- [![Keep a Changelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog-%23E05735)](CHANGELOG.md) -->
+<!-- [![GitHub Release](https://img.shields.io/github/v/release/JoseRodrigues443/is-my-team-awake)](https://github.com/JoseRodrigues443/is-my-team-awake/releases) -->
 [![Go Reference](https://pkg.go.dev/badge/github.com/JoseRodrigues443/is-my-team-awake.svg)](https://pkg.go.dev/github.com/JoseRodrigues443/is-my-team-awake)
-[![go.mod](https://img.shields.io/github/go-mod/go-version/JoseRodrigues443/is-my-team-awake)](go.mod)
-[![LICENSE](https://img.shields.io/github/license/JoseRodrigues443/is-my-team-awake)](LICENSE)
+<!-- [![go.mod](https://img.shields.io/github/go-mod/go-version/JoseRodrigues443/is-my-team-awake)](go.mod) -->
+<!-- [![LICENSE](https://img.shields.io/github/license/JoseRodrigues443/is-my-team-awake)](LICENSE) -->
 [![build](https://github.com/JoseRodrigues443/is-my-team-awake/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/JoseRodrigues443/is-my-team-awake/actions/workflows/build.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/JoseRodrigues443/is-my-team-awake)](https://goreportcard.com/report/github.com/JoseRodrigues443/is-my-team-awake)
+<!-- [![Go Report Card](https://goreportcard.com/badge/github.com/JoseRodrigues443/is-my-team-awake)](https://goreportcard.com/report/github.com/JoseRodrigues443/is-my-team-awake) -->
 <!-- [![Codecov](https://codecov.io/gh/JoseRodrigues443/is-my-team-awake/branch/main/graph/badge.svg)](https://codecov.io/gh/JoseRodrigues443/is-my-team-awake) -->
 
 CLI tool to check if my team members are awake
