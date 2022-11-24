@@ -6,6 +6,7 @@
 <!-- [![go.mod](https://img.shields.io/github/go-mod/go-version/JoseRodrigues443/is-my-team-awake)](go.mod) -->
 <!-- [![LICENSE](https://img.shields.io/github/license/JoseRodrigues443/is-my-team-awake)](LICENSE) -->
 [![build](https://github.com/JoseRodrigues443/is-my-team-awake/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/JoseRodrigues443/is-my-team-awake/actions/workflows/build.yml)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#JoseRodrigues443/is-my-team-awake)
 <!-- [![Go Report Card](https://goreportcard.com/badge/github.com/JoseRodrigues443/is-my-team-awake)](https://goreportcard.com/report/github.com/JoseRodrigues443/is-my-team-awake) -->
 <!-- [![Codecov](https://codecov.io/gh/JoseRodrigues443/is-my-team-awake/branch/main/graph/badge.svg)](https://codecov.io/gh/JoseRodrigues443/is-my-team-awake) -->
 
