@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/JoseRodrigues443/is-my-team-awake/lib"
 	"github.com/JoseRodrigues443/is-my-team-awake/store"
@@ -10,25 +9,29 @@ import (
 )
 
 var (
-	check = &cobra.Command{
+	check       = buildCheckCommand()
+	NameToCheck string
+)
+
+func buildCheckCommand() *cobra.Command {
+	toReturn := &cobra.Command{
 		Use:   "check",
 		Short: "check if its awake",
 		Long:  ``,
 		Run:   cmdCheck,
 	}
-)
+	toReturn.Flags().StringVarP(&NameToCheck, "name", "n", "", "Name of the team member to check (required)")
+	_ = toReturn.MarkFlagRequired("name")
+
+	return toReturn
+}
 
 func cmdCheck(ccmd *cobra.Command, args []string) {
-	if len(args) == 0 {
-		fmt.Fprintln(os.Stderr, "No username is specified. Please specify a team member.")
-		return
-	}
-	name := args[0]
 	config := lib.GetConfig()
 	repo := store.NewRepo()
-	member, error := repo.GetMemberByName(name)
+	member, error := repo.GetMemberByName(NameToCheck)
 	if error != nil {
-		fmt.Printf("The user %s was not found. Try the list command to find the correct name.\n", name)
+		fmt.Printf("The user %s was not found. Try the list command to find the correct name.\n", NameToCheck)
 		return
 	}
 	theirTime := member.TheirTime(config)

@@ -50,6 +50,7 @@ func init() {
 	// commands
 	rootCmd.AddCommand(check)
 	rootCmd.AddCommand(list)
+	rootCmd.AddCommand(add)
 }
 
 func initConfig() {
