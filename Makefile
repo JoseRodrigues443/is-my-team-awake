@@ -112,7 +112,7 @@ help:
 
 .PHONY: alias
 alias: ## Loads all the alias
-	sh alias.sh
+	print "alias is-my-team-awake='go run .'"
 
 .PHONY: demo
 demo:

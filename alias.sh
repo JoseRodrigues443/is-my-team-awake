@@ -1,1 +1,0 @@
-alias is-my-team-awake='go run .'

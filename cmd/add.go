@@ -19,7 +19,11 @@ func buildAddCommand() *cobra.Command {
 		Use:   "add",
 		Short: "add a team member",
 		Long:  ``,
-		Run:   cmdAdd,
+		Run: func(cmd *cobra.Command, args []string) {
+			cmdAdd(cmd, args)
+			// after adding list all
+			cmdList(cmd, args)
+		},
 	}
 	toReturn.Flags().StringVarP(&NameToAdd, "name", "n", "", "Name of the team member (required)")
 	toReturn.Flags().StringVarP(&LocationToAdd, "location", "l", "", "Time zone location (required)")
@@ -37,5 +41,5 @@ func cmdAdd(ccmd *cobra.Command, args []string) {
 		Location: LocationToAdd,
 	}
 	repo.AddMember(teamMember)
-	fmt.Printf("Saved")
+	fmt.Println("Saved")
 }
