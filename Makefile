@@ -99,6 +99,10 @@ endef
 commit:
 	npm run commit
 
+.PHONY: force-commit
+force-commit:
+	npm run force-commit
+
 .PHONY: commit-all
 commit-all:
 	git add -A
