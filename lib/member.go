@@ -7,8 +7,8 @@ import (
 )
 
 type TeamMember struct {
-	Name     string
-	Location string
+	Name     string `json:"name"`
+	Location string `json:"location"`
 }
 
 func (t *TeamMember) IsAwake(c *Config) bool {

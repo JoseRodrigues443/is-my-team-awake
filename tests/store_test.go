@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"reflect"
 	"testing"
 
 	"github.com/JoseRodrigues443/is-my-team-awake/lib"
@@ -16,7 +17,7 @@ func TestGetMemberStore(t *testing.T) {
 		Location: "Asia/Kolkata",
 	}
 
-	if got == nil {
+	if reflect.ValueOf(got).IsZero() {
 		t.Errorf("got %q, wanted %q", got, want)
 	}
 }
@@ -27,11 +28,11 @@ func TestAddMemberStore(t *testing.T) {
 		Name:     "Test 1",
 		Location: "Asia/Kolkata",
 	}
-	total_before := len(repo.GetAll())
+	total_before := repo.Total()
 
 	repo.AddMember(to_add)
 
-	total_after := len(repo.GetAll())
+	total_after := repo.Total()
 
 	if total_before == total_after {
 		t.Errorf("got %d, wanted %d", total_after, total_before+1)
@@ -40,16 +41,16 @@ func TestAddMemberStore(t *testing.T) {
 
 func TestAddMemberRepeatedStore(t *testing.T) {
 	repo := store.NewRepo()
-	all := repo.GetAll()
+	first, _ := repo.First()
 	to_add := lib.TeamMember{
-		Name:     all[0].Name,
+		Name:     first.Name,
 		Location: "Asia/Kolkata",
 	}
-	total_before := len(all)
+	total_before := repo.Total()
 
 	repo.AddMember(to_add)
 
-	total_after := len(repo.GetAll())
+	total_after := repo.Total()
 
 	if total_before < total_after {
 		t.Errorf("got %d, wanted %d", total_after, total_before)

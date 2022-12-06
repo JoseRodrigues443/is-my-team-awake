@@ -2,28 +2,16 @@ package logger
 
 import (
 	"flag"
-	"fmt"
 	"io"
 	"log"
 	"os"
-	"path/filepath"
-	"runtime"
+
+	utils "github.com/JoseRodrigues443/is-my-team-awake/utils/logger"
 )
 
 var (
 	Log *log.Logger
 )
-
-// It returns the path of the directory containing the file that called it
-func getPackagePath() string {
-	_, file, _, _ := runtime.Caller(0)
-	return filepath.Dir(file)
-}
-
-// It returns the path to the project root directory
-func getProjectRootPath(logPath string) string {
-	return fmt.Sprintf("%s/../%s", getPackagePath(), logPath)
-}
 
 func init() {
 	flag.CommandLine.SetOutput(io.Discard)
@@ -32,7 +20,7 @@ func init() {
 	// @JoseRodrigues443 TODO add these dir to config file
 	var logPath = "./logs/info.log"
 
-	var file, err = os.Create(getProjectRootPath(logPath))
+	var file, err = os.Create(utils.GetProjectRootPath(logPath))
 
 	if err != nil {
 		panic(err)

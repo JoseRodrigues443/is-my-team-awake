@@ -21,7 +21,7 @@ var (
 func cmdList(ccmd *cobra.Command, args []string) {
 	config := lib.GetConfig()
 	repo := store.NewRepo()
-	members := repo.GetAll()
+	members, _ := repo.GetAll()
 	logger.Log.Printf("cmd.List members: %d", len(members))
 	isAwake := "Sleeping"
 	for _, v := range members {

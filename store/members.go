@@ -1,38 +1,34 @@
 package store
 
 import (
-	"errors"
 	"strings"
 
 	"github.com/JoseRodrigues443/is-my-team-awake/lib"
+	utils "github.com/JoseRodrigues443/is-my-team-awake/utils/logger"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
-var ErrNotFound = errors.New("Member was not found")
-
 type Repo struct {
-	membersById map[string]lib.TeamMember
+	members *gorm.DB
 }
 
 func NewRepo() *Repo {
-	membersById := make(map[string]lib.TeamMember)
 
-	membersById["jonh_doe"] = lib.TeamMember{
-		Name:     "Jonh Doe",
-		Location: "Asia/Shanghai",
+	var path = "./db/is-my-team-awake.db"
+
+	var fullPath = utils.GetProjectRootPath(path)
+
+	db, err := gorm.Open(sqlite.Open(utils.GetProjectRootPath(fullPath)), &gorm.Config{})
+
+	if err != nil {
+		panic("failed to connect database")
 	}
 
-	membersById["janet_doe"] = lib.TeamMember{
-		Name:     "Janet Doe",
-		Location: "Asia/Kolkata",
-	}
-
-	membersById["李祖阳"] = lib.TeamMember{
-		Name:     "李祖阳",
-		Location: "Europe/London",
-	}
+	db.AutoMigrate(&lib.TeamMember{})
 
 	return &Repo{
-		membersById: membersById,
+		members: db,
 	}
 }
 
@@ -40,29 +36,37 @@ func generateKey(name string) string {
 	return strings.ReplaceAll(strings.ToLower(name), " ", "_")
 }
 
-func (r *Repo) GetAll() []lib.TeamMember {
-	v := make([]lib.TeamMember, 0)
-	for _, tx := range r.membersById {
-		v = append(v, tx)
-	}
-	return v
+func (r *Repo) First() (lib.TeamMember, error) {
+	var to_return lib.TeamMember
+	result := r.members.First(&to_return)
+	return to_return, result.Error
 }
 
-func (r *Repo) GetMemberByName(name string) (*lib.TeamMember, error) {
-	key := generateKey(name)
-	member, ok := r.membersById[key]
-	if ok {
-		return &member, nil
-	}
-	return nil, ErrNotFound
+func (r *Repo) GetAll() ([]lib.TeamMember, error) {
+	var to_return []lib.TeamMember
+	result := r.members.Find(&to_return)
+	return to_return, result.Error
 }
 
-func (r *Repo) AddMember(member lib.TeamMember) {
-	key := generateKey(member.Name)
-	r.membersById[key] = member
+func (r *Repo) GetMemberByName(name string) (lib.TeamMember, error) {
+	var to_return lib.TeamMember
+	result := r.members.First(&to_return, "name = ?", name)
+	return to_return, result.Error
 }
 
-func (r *Repo) RemoveMember(name string) {
-	key := generateKey(name)
-	delete(r.membersById, key)
+func (r *Repo) AddMember(member lib.TeamMember) (lib.TeamMember, error) {
+	result := r.members.Create(&member)
+	return member, result.Error
+}
+
+func (r *Repo) RemoveMember(name string) (lib.TeamMember, error) {
+	var to_return lib.TeamMember
+	result := r.members.Where("name = ?", "name").Delete(&to_return)
+	return to_return, result.Error
+}
+
+func (r *Repo) Total() int64 {
+	var to_return int64
+	r.members.Count(&to_return)
+	return to_return
 }
