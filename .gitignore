@@ -27,3 +27,6 @@ node_modules
 
 # tests
 coverage.html
+
+# database
+./db/is-my-team-awake.db

@@ -15,6 +15,7 @@ clean: ## remove files created during build pipeline
 	rm -rf dist
 	rm -f coverage.*
 	rm -f ./logs/*.log
+	rm -f ./db/*.db
 
 .PHONY: install
 install: env ## go install tools
@@ -97,6 +98,10 @@ endef
 .PHONY: commit
 commit:
 	npm run commit
+
+.PHONY: force-commit
+force-commit:
+	npm run force-commit
 
 .PHONY: commit-all
 commit-all:

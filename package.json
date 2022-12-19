@@ -9,6 +9,7 @@
   },
   "scripts": {
     "commit": "cz",
+    "force-commit": "cz --no-verify",
     "prepare": "husky install"
   },
   "repository": {
